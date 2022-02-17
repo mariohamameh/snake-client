@@ -1,9 +1,11 @@
 const net = require("net");
 const { markAsUntransferable } = require("worker_threads");
+
+const { IP, PORT } = require("./constants");
 // establishes a connection with the game server
 const connect = function () {
     const conn = net.createConnection({
-      host: '165.227.47.243',// IP address here,
+      host: 'localhost',// IP address here,
       port: 50541// PORT number here,
     });
 
@@ -16,7 +18,8 @@ const connect = function () {
     });
     
     conn.on('data', (data) => {
-          console.log(data.toString());
+          //console.log("Move: up");
+          console.log('Server says: ', data);
           conn.end();
         });
     conn.on('end', () => {
